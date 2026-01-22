@@ -32,7 +32,14 @@ fi
 chmod +x ${SCPSL_DIR}/LocalAdmin 2>/dev/null || true
 chmod +x ${SCPSL_DIR}/SCPSL_Server.x86_64 2>/dev/null || true
 
+# Accepter automatiquement l'EULA
+CONFIG_DIR="/root/.config/SCP Secret Laboratory"
+if [ ! -f "${CONFIG_DIR}/eula_accepted.txt" ]; then
+    echo "[INFO] Acceptation de l'EULA..."
+    echo "yes" > "${CONFIG_DIR}/eula_accepted.txt"
+fi
+
 echo "[INFO] Démarrage sur le port ${SCPSL_PORT:-7777}..."
 
 cd ${SCPSL_DIR}
-exec ./LocalAdmin -p ${SCPSL_PORT:-7777}
+exec yes | ./LocalAdmin -p ${SCPSL_PORT:-7777}
