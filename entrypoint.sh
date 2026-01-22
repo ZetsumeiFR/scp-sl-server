@@ -42,4 +42,6 @@ fi
 echo "[INFO] Démarrage sur le port ${SCPSL_PORT:-7777}..."
 
 cd ${SCPSL_DIR}
-exec yes | ./LocalAdmin -p ${SCPSL_PORT:-7777}
+
+# Accepter l'EULA et garder stdin ouvert
+(echo "yes"; cat) | ./LocalAdmin -p ${SCPSL_PORT:-7777}
