@@ -43,5 +43,8 @@ echo "[INFO] Démarrage sur le port ${SCPSL_PORT:-7777}..."
 
 cd ${SCPSL_DIR}
 
-# Accepter l'EULA et garder stdin ouvert
-(echo "yes"; cat) | ./LocalAdmin ${SCPSL_PORT:-7777}
+# Répondre aux prompts interactifs:
+# 1. "keep" pour garder la config par défaut
+# 2. "yes" pour accepter l'EULA
+# Puis garder stdin ouvert pour les commandes
+(echo "keep"; echo "yes"; cat) | ./LocalAdmin ${SCPSL_PORT:-7777}
