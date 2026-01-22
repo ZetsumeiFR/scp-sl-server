@@ -8,14 +8,23 @@ echo "========================================"
 echo "  SCP: Secret Laboratory Server"
 echo "========================================"
 
+# Créer les répertoires nécessaires
+mkdir -p ${SCPSL_DIR}
+mkdir -p /root/.steam/steam/steamapps
+mkdir -p /root/.config/"SCP Secret Laboratory"
+
 # Installation/Mise à jour via SteamCMD
 if [ ! -f "${SCPSL_DIR}/LocalAdmin" ] || [ "${SKIP_UPDATE:-false}" != "true" ]; then
-    echo "[INFO] Installation/Mise à jour via SteamCMD..."
+    echo "[INFO] Initialisation de SteamCMD..."
+    steamcmd +quit || true
+    
+    echo "[INFO] Installation du serveur SCP:SL..."
     steamcmd \
         +force_install_dir ${SCPSL_DIR} \
         +login anonymous \
         +app_update ${SCPSL_APP_ID} validate \
         +quit
+    
     echo "[INFO] Installation terminée!"
 fi
 

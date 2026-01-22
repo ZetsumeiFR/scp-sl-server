@@ -9,12 +9,13 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends libicu74 && \
     rm -rf /var/lib/apt/lists/* && \
     mkdir -p ${SCPSL_DIR} && \
+    mkdir -p /root/.steam/steam/steamapps && \
     mkdir -p /root/.config/"SCP Secret Laboratory"
 
 COPY --chmod=755 entrypoint.sh /entrypoint.sh
 WORKDIR ${SCPSL_DIR}
 
-VOLUME ["/root/.config/SCP Secret Laboratory", "/opt/scpsl"]
+VOLUME ["/root/.config/SCP Secret Laboratory", "/opt/scpsl", "/root/.steam"]
 
 EXPOSE ${SCPSL_PORT}/udp
 

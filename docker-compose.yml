@@ -14,6 +14,7 @@ services:
     volumes:
       - scpsl-data:/opt/scpsl
       - scpsl-config:/root/.config/SCP Secret Laboratory
+      - scpsl-steam:/root/.steam
     
     deploy:
       resources:
@@ -30,3 +31,4 @@ services:
 volumes:
   scpsl-data:
   scpsl-config:
+  scpsl-steam:
