@@ -45,6 +45,7 @@ cd ${SCPSL_DIR}
 
 # Répondre aux prompts interactifs:
 # 1. "keep" pour garder la config par défaut
-# 2. "yes" pour accepter l'EULA
+# 2. "global" pour appliquer la config à tous les serveurs
+# 3. "yes" pour accepter l'EULA
 # Puis garder stdin ouvert pour les commandes
-(echo "keep"; echo "yes"; cat) | ./LocalAdmin ${SCPSL_PORT:-7777}
+(echo "keep"; echo "global"; echo "yes"; cat) | ./LocalAdmin ${SCPSL_PORT:-7777}
