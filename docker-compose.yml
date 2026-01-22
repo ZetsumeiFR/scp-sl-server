@@ -13,7 +13,7 @@ services:
     
     volumes:
       - scpsl-data:/opt/scpsl
-      - scpsl-config:/home/scpsl/.config/SCP Secret Laboratory
+      - scpsl-config:/root/.config/SCP Secret Laboratory
     
     deploy:
       resources:
