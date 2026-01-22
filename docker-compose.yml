@@ -1,0 +1,32 @@
+services:
+  scpsl-server:
+    build: .
+    container_name: scpsl-server
+    restart: unless-stopped
+    
+    ports:
+      - "7777:7777/udp"
+    
+    environment:
+      - SCPSL_PORT=7777
+      - SKIP_UPDATE=false
+    
+    volumes:
+      - scpsl-data:/opt/scpsl
+      - scpsl-config:/home/scpsl/.config/SCP Secret Laboratory
+    
+    deploy:
+      resources:
+        limits:
+          cpus: "2"
+          memory: 4G
+        reservations:
+          cpus: "1"
+          memory: 2G
+
+    stdin_open: true
+    tty: true
+
+volumes:
+  scpsl-data:
+  scpsl-config:
