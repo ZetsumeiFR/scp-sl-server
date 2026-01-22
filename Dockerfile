@@ -3,15 +3,12 @@ FROM steamcmd/steamcmd:ubuntu-24
 ENV SCPSL_DIR=/opt/scpsl
 ENV SCPSL_PORT=7777
 
-USER root
-
-# Dépendances pour SCP:SL
+# Dépendances pour SCP:SL + création utilisateur
 RUN apt-get update && \
     apt-get install -y --no-install-recommends libicu74 && \
-    rm -rf /var/lib/apt/lists/*
-
-# Répertoires
-RUN mkdir -p ${SCPSL_DIR} && \
+    rm -rf /var/lib/apt/lists/* && \
+    useradd -m -s /bin/bash steam && \
+    mkdir -p ${SCPSL_DIR} && \
     mkdir -p /home/steam/.config/"SCP Secret Laboratory" && \
     chown -R steam:steam ${SCPSL_DIR} /home/steam
 
